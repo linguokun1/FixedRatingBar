@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="StarRatingBar">
+        <attr name="bg_drawable" format="reference" />
+        <attr name="pre_drawable" format="reference" />
+        <attr name="horizontal_space" format="dimension" />
+        <attr name="numStars" format="integer" />
+    </declare-styleable>
+</resources>

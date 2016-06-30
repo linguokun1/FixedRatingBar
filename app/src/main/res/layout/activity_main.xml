@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.fixedratingbar.linguokun.fixedratingbar.MainActivity"
+    >
+
+
+    <com.fixedratingbar.linguokun.customedview.StarRatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+
+        app:bg_drawable="@drawable/ico_competition_performance_star_grey"
+        app:pre_drawable="@drawable/ico_competition_performance_star"
+        app:numStars="5"
+        app:horizontal_space="20dp"
+        android:background="#FFFFFFFF"
+        android:padding="12dp"/>
+</RelativeLayout>
