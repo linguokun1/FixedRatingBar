@@ -64,25 +64,19 @@ public class StarRatingBar extends RatingBar {
         int width;
 
         if(widthMode == MeasureSpec.EXACTLY){//按当前模式测出的值来取值
-            System.out.println("width 走EXACTLY");
             width = widthSize;
         }else if(widthMode == MeasureSpec.AT_MOST){
-            System.out.println("width 走AT_MOST");
             width = Math.min(desiredWidth, widthSize);//不能大于 按期望宽度与当前模式测出来的宽度取较小值
         }else{
-            System.out.println("width 走其它");
             width = desiredWidth;//包裹 按期望宽度取值
         }
 
         int height;
         if(heightMode == MeasureSpec.EXACTLY){
-            System.out.println("height 走EXACTLY");
             height = heightSize;
         }else if(heightMode == MeasureSpec.AT_MOST){
-            System.out.println("height 走AT_MOST");
             height = mBgBitmap.getHeight()+getPaddingTop()+getPaddingBottom();
         }else{
-            System.out.println("height 走其它");
             height = width/mNumStars;
         }
         setMeasuredDimension(width, height);
