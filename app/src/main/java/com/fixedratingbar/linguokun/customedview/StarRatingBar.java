@@ -20,12 +20,12 @@ import com.fixedratingbar.linguokun.fixedratingbar.R;
  */
 public class StarRatingBar extends RatingBar {
 
-    private int mNumStars;
-    private int mBgBitmapResourceId;
-    private int mPreBitmapResourceId;
+    private int mNumStars;//quantity of icones
+    private int mBgBitmapResourceId;//Foreground drawable
+    private int mPreBitmapResourceId;//Background drawable
     private Bitmap mBgBitmap;
     private Bitmap mPreBitmap;
-    private float mHorizontalSpace;
+    private float mHorizontalSpace;//The spacing among icons
 
     public StarRatingBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
@@ -81,20 +81,19 @@ public class StarRatingBar extends RatingBar {
         }
         setMeasuredDimension(width, height);
     }
+
     @Override
     protected synchronized void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        //画灰色星星
+        //Draw background Bitmap
         for(int x=0; x<mNumStars; x++){
             canvas.drawBitmap(mBgBitmap, getPaddingLeft()+mBgBitmap.getWidth() * x + mHorizontalSpace * x, getPaddingTop(), null);
         }
-        //画黄色星星
-        for(int x=0; x<mRating; x++){//大于等于1的时候才画
+        //Draw foreground Bitmap
+        for(int x=0; x<mRating; x++){
             canvas.drawBitmap(mPreBitmap, getPaddingLeft()+mPreBitmap.getWidth() * x + mHorizontalSpace * x, getPaddingTop(), null);
         }
-
-
     }
 
     int mRating;
@@ -109,20 +108,16 @@ public class StarRatingBar extends RatingBar {
                 moveX = (int) event.getX();
                 for (int x = 0; x <= mNumStars; x++) {
                     if (moveX < (getPaddingLeft() + mBgBitmap.getWidth() * x + mHorizontalSpace * x)) {
-                        if (mRating != x) {//与原来的评分不相等时
+                        if (mRating != x) {//excuting when it is different from last rating.
                             if(moveX != lastMoveX || event.getAction() == MotionEvent.ACTION_DOWN) {
                                 mRating = x;
                             }
-                        }else{//与原来的评分相等
+                        }else{//excuting when it equal to last rating.
                             if(event.getAction() == MotionEvent.ACTION_DOWN){
-                                if(moveX != lastMoveX) {
                                     mRating = x - 1;
-                                }else{
-                                    mRating = x - 1;
-                                }
                             }
                         }
-                        if(x != lastX){
+                        if(x != lastX){//防止在滑动过程中不断刷新,只有在x != lastX的情况下才重绘
                             invalidate();
                             if(mOnRatingChangeListener != null){
                                 mOnRatingChangeListener.onRatingChange(mRating);
@@ -158,13 +153,8 @@ public class StarRatingBar extends RatingBar {
         mNumStars = numStars;
     }
 
-    public float dp2px(float dp){
-        return getResources().getDisplayMetrics().density * dp;
-    }
-
     public interface OnRatingChangeListener{
         void onRatingChange(int rating);
-
     }
 
     OnRatingChangeListener mOnRatingChangeListener;
