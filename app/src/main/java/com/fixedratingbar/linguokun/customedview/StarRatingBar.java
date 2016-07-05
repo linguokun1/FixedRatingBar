@@ -18,6 +18,7 @@ import com.fixedratingbar.linguokun.fixedratingbar.R;
  * @description
  * @date 16/6/29
  */
+/**星星评分控件*/
 public class StarRatingBar extends RatingBar {
 
     private int mNumStars;//quantity of icones
@@ -39,7 +40,7 @@ public class StarRatingBar extends RatingBar {
 
         mPreBitmapResourceId = a.getResourceId(R.styleable.StarRatingBar_pre_drawable, -1);
         mPreBitmap = BitmapFactory.decodeResource(getResources(), mPreBitmapResourceId);
-
+        a.recycle();
     }
 
     public StarRatingBar(Context context, AttributeSet attrs) {
@@ -135,10 +136,12 @@ public class StarRatingBar extends RatingBar {
         return super.onTouchEvent(event);
     }
 
+    @SuppressWarnings("unused")
     public void setRating(int rating){
         mRating = rating;
     }
 
+    @SuppressWarnings("unused")
     public int getRating(int rating){
         return mRating;
     }
@@ -158,9 +161,12 @@ public class StarRatingBar extends RatingBar {
     }
 
     OnRatingChangeListener mOnRatingChangeListener;
+
+    @SuppressWarnings("unused")
     public void setOnRatingChangeListener(OnRatingChangeListener listener){
         mOnRatingChangeListener = listener;
     }
+    @SuppressWarnings("unused")
     public OnRatingChangeListener getOnRatingChangeListener(){
         return mOnRatingChangeListener;
     }
